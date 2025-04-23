@@ -1,9 +1,5 @@
 # Gerenciador de Contatos - Aplicação de Terminal
 
-![Imagem da Tabela Contatos](link_para_sua_imagem_da_tabela_contatos.png)
-
-> **Observação:** Substitua `link_para_sua_imagem_da_tabela_contatos.png` pelo caminho ou URL da imagem que representa a estrutura da sua tabela `contatos` no PostgreSQL. Você pode gerar um screenshot da sua tabela no pgAdmin ou criar um diagrama simples.
-
 ## Descrição do Projeto
 
 Este é um aplicativo simples de gerenciamento de contatos desenvolvido em Java para ser executado diretamente no terminal. O objetivo principal é permitir que o usuário realize operações básicas de Cadastro, Leitura, Atualização e Exclusão (CRUD) de informações de contato de forma interativa através de um menu textual.
