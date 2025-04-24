@@ -1,4 +1,4 @@
 package com.gustavo.contatos.model;
 
-public class ContatoDAO {
+public class ContatoDAO    {
 }
