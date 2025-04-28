@@ -13,6 +13,10 @@ public class Contato {
         this.email = email;
     }
 
+    public Contato() {
+
+    }
+
     //Getters
     public String getNome(){
         return nome;
