@@ -4,13 +4,14 @@ import com.gustavo.contatos.model.Contato;
 import com.gustavo.contatos.model.ContatoDAO;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
     public static void main(String[] args) throws SQLException {
         int n = 0;
         Scanner leitor = new Scanner(System.in);
-        Contato contato =  new Contato();
         ContatoDAO contatoDAO = new ContatoDAO();
 
         while (n < 5){
@@ -21,7 +22,9 @@ public class Menu {
             System.out.println("4-Excluir Contatos");
             System.out.println("5-Sair");
             n = leitor.nextInt();
+            //Condição para adicionar contatos
             if (n == 1){
+                Contato contato =  new Contato();
                 //Nome Digitado pelo usuário
                 System.out.println("Nome: ");
                 leitor.nextLine(); //Quebra de linha
@@ -44,10 +47,25 @@ public class Menu {
                     System.err.println("Erro ao adicionar contato!");
                     e.printStackTrace();
                 }
+            //Condição para Listar Contatos
+            } else if (n==2) {
+                List<Contato> contatoMenu = contatoDAO.listarContatos();
+                if (contatoMenu.isEmpty()){
+                    System.out.println("Nenhum contato encontrado.");
+                } else{
+                    System.out.println("Lista de Contatos");
+                    for (Contato contato : contatoMenu){
+                        System.out.println("ID: " + contato.getId());
+                        System.out.println("Nome: " + contato.getNome());
+                        System.out.println("Telefone: " + contato.getTelefone());
+                        System.out.println("Email: " + contato.getEmail());
+                        System.out.println("-----------------------------");
+                    }
+                    
+                }
+
 
             }
-
-
 
 
         }
