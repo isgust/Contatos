@@ -14,12 +14,11 @@ public class ContatoDAO{
 
         try{
             conect = ConnectDatabase.conectar();
-            String sql = "INSERT INTO Contato(id, nome, telefone, email) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO Contato(nome, telefone, email) VALUES (?,?,?)";
             pstmt = conect.prepareStatement(sql);
-            pstmt.setInt(1, contato.getId());
-            pstmt.setString(2, contato.getNome());
-            pstmt.setString(3, contato.getEmail());
-            pstmt.setString(4, contato.getTelefone());
+            pstmt.setString(1, contato.getNome());
+            pstmt.setString(2, contato.getEmail());
+            pstmt.setString(3, contato.getTelefone());
             pstmt.executeUpdate();
             System.out.println("Contato adicionado com sucesso!");
         } finally {
