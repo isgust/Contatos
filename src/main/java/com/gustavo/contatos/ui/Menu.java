@@ -95,6 +95,17 @@ public class Menu {
                     e.printStackTrace();
                 }
 
+            } else if (n == 4) {
+                System.out.println("Insira o ID do contato que deseja excluir: ");
+                leitor.nextLine();
+                int idDelete = leitor.nextInt();
+
+                try{
+                    contatoDAO.deletar(idDelete);
+                }catch (SQLException e){
+                    System.err.println("Erro ao deletar contato");
+                    e.printStackTrace();
+                }
             }
 
 

@@ -82,28 +82,32 @@ public class ContatoDAO{
     }
 
     //Metodo de Deletar contatos
-    public void deletar(int enterId) throws SQLException{
+    public void deletar(int enterId) throws SQLException {
         Connection conect = null;
         PreparedStatement pstmt = null;
-        try{
+        int linhasAfetadas = 0; // Inicializa o contador de linhas afetadas
+
+        try {
             conect = ConnectDatabase.conectar();
             String sql = "DELETE FROM Contato WHERE id = ?";
             pstmt = conect.prepareStatement(sql);
             pstmt.setInt(1, enterId);
-            pstmt.executeUpdate();
-            System.out.println("Contato Excluido com sucesso!");
+            linhasAfetadas = pstmt.executeUpdate(); // Executa a exclusão e obtém o número de linhas afetadas
 
+            if (linhasAfetadas > 0) {
+                System.out.println("Contato com ID " + enterId + " excluído com sucesso!");
+            } else {
+                System.out.println("Nenhum contato encontrado com o ID " + enterId + ".");
+            }
 
-        }finally {
-            if (conect != null){
+        } finally {
+            if (conect != null) {
                 conect.close();
             }
-            if (pstmt != null){
+            if (pstmt != null) {
                 pstmt.close();
             }
-
         }
-
     }
 
 }
