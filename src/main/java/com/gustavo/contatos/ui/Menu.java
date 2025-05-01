@@ -48,22 +48,52 @@ public class Menu {
                     e.printStackTrace();
                 }
             //Condição para Listar Contatos
-            } else if (n==2) {
-                List<Contato> contatoMenu = contatoDAO.listarContatos();
-                if (contatoMenu.isEmpty()){
-                    System.out.println("Nenhum contato encontrado.");
-                } else{
-                    System.out.println("Lista de Contatos");
-                    for (Contato contato : contatoMenu){
-                        System.out.println("ID: " + contato.getId());
-                        System.out.println("Nome: " + contato.getNome());
-                        System.out.println("Telefone: " + contato.getTelefone());
-                        System.out.println("Email: " + contato.getEmail());
-                        System.out.println("-----------------------------");
+            } else if (n == 2) {
+                try {
+                    List<Contato> contatoMenu = contatoDAO.listarContatos();
+                    if (contatoMenu.isEmpty()) {
+                        System.out.println("Nenhum contato encontrado.");
+                    } else {
+                        System.out.println("Lista de Contatos");
+                        for (Contato contato : contatoMenu) {
+                            System.out.println("ID: " + contato.getId());
+                            System.out.println("Nome: " + contato.getNome());
+                            System.out.println("Telefone: " + contato.getTelefone());
+                            System.out.println("Email: " + contato.getEmail());
+                            System.out.println("-----------------------------");
+                        }
+
                     }
-                    
+                }catch (SQLException e){
+                    System.err.println("Erro ao listar contatos!");
+                    e.printStackTrace();
                 }
 
+
+            } else if (n == 3) {
+                System.out.println("Pesquise um contato por nome ou telefone: ");
+                leitor.nextLine();
+                String criterioPesquisa = leitor.nextLine();
+
+                try{
+                    List<Contato> contatosFiltrados = contatoDAO.pesquisarContatos(criterioPesquisa);
+
+                    if (contatosFiltrados.isEmpty()){
+                        System.out.println("Nenhum contato encontrado!");
+                    } else {
+                        System.out.println("Resultados da pesquisa para: " + criterioPesquisa);
+                        for (Contato contato : contatosFiltrados){
+                            System.out.println("ID: " + contato.getId());
+                            System.out.println("Nome: " + contato.getNome());
+                            System.out.println("Telefone: " + contato.getTelefone());
+                            System.out.println("Email: " + contato.getEmail());
+                            System.out.println("------------------");
+                        }
+                    }
+                } catch (SQLException e) {
+                    System.err.println("Erro ao pesquisar contatos!");
+                    e.printStackTrace();
+                }
 
             }
 
